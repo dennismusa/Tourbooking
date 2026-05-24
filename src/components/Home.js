@@ -30,18 +30,18 @@ function Home() {
     return () => clearInterval(interval);
   }, [images.length]);
   return (
-    <div className="bg-white text-gray-800 overflow-hidden">
+    <div className="bg-white text-gray-800 overflow-x-hidden">
       
       {/* HERO SECTION */}
 <section
   id="home"
-  className="relative h-[85vh] flex items-center overflow-hidden"
+  className="relative min-h-screen flex items-center overflow-hidden"
 >
 
   {/* BACKGROUND SLIDER */}
   <div className="absolute inset-0">
     <div
-      className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out scale-105"
+      className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105"
       style={{ backgroundImage: `url(${images[index]})` }}
     />
   </div>
@@ -59,17 +59,17 @@ function Home() {
           Booking Safari Experience
         </p>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+       <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-6">
           Explore Kenya With Premium Safari Vehicles
         </h1>
 
-        <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-8 mb-10">
+        <p className="text-gray-300 text-sm sm:text-base md:text-xl leading-7 md:leading-8 mb-8">
           Reliable safari transport services in Kimana and Amboseli for tourists,
           photographers, families, and adventure groups seeking unforgettable wildlife experiences.
         </p>
 
         {/* CTA BUTTONS */}
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto ">
 
           {/* PRIMARY CTA - WHATSAPP */}
           <a
@@ -248,7 +248,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-5 sm:p-8">
           <h3 className="text-2xl font-bold mb-3">Amboseli National Park</h3>
 
           <p className="text-gray-600 leading-7 mb-6">
@@ -441,7 +441,7 @@ function Home() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
 
           {/* Amboseli */}
           <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
@@ -653,7 +653,7 @@ function Home() {
 
       {/* FOOTER */}
       <footer className="bg-black text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-4 gap-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Brand */}
           <div>
