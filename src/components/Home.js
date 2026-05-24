@@ -86,11 +86,11 @@ function Home() {
 
           {/* SECONDARY CTA */}
           <a
-            href="/vehicles"
-            className="border border-white/70 hover:bg-white hover:text-black px-8 py-4 rounded-xl transition duration-300 backdrop-blur-sm"
-          >
-            Explore Fleet
-          </a>
+  href="/vehicles"
+  className="border border-white/70 hover:bg-white hover:text-black px-8 py-4 rounded-xl transition duration-300 backdrop-blur-sm"
+>
+  Explore Fleet
+</a>
 
         </div>
 
