@@ -69,7 +69,7 @@ function Navbar() {
                 href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg hover:shadow-yellow-400/30"
+                className="bg-yellow-400 hover:bg-yellow-300 text-black px-5 py-2.5 rounded-full font-semibold whitespace-nowrap transition shadow-md hover:shadow-yellow-400/30"
               >
                 Book Safari
               </a>
@@ -139,7 +139,7 @@ function Navbar() {
             rel="noreferrer"
             className="mt-4 bg-yellow-400 hover:bg-yellow-300 text-center text-black py-3 rounded-xl font-bold transition duration-300"
           >
-            Book on WhatsApp
+            BookUs
           </a>
 
         </div>
