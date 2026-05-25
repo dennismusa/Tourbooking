@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
 function Contact() {
 
   const handleSubmit = (e) => {
@@ -135,54 +136,95 @@ function Contact() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-black text-white py-16 border-t border-gray-800">
-
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
-
+      <footer className="bg-red-950 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          
+          {/* Brand */}
           <div>
             <h2 className="text-3xl font-bold text-yellow-500 mb-5">
               Kimana Safari
             </h2>
+
             <p className="text-gray-400 leading-8">
-              Premium safari vehicle hire services in Amboseli and Kimana.
+              Professional safari vehicle hire services in Kimana and Amboseli.
+              Safe, comfortable, and unforgettable safari experiences.
             </p>
           </div>
 
+          {/* Links */}
           <div>
-            <h3 className="text-xl font-bold mb-5">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-5">
+              Quick Links
+            </h3>
+
             <ul className="space-y-4 text-gray-400">
-              <li><a href="/" className="hover:text-yellow-500">Home</a></li>
-              <li><a href="/vehicles" className="hover:text-yellow-500">Fleet</a></li>
-              <li><a href="/gallery" className="hover:text-yellow-500">Gallery</a></li>
-              <li><a href="/contact" className="hover:text-yellow-500">Contact</a></li>
+              <li>
+                <Link to="/" className="hover:text-yellow-500 transition">
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/vehicles" className="hover:text-yellow-500 transition">
+                  Fleet
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/gallery" className="hover:text-yellow-500 transition">
+                  Gallery
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/contact" className="hover:text-yellow-500 transition">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Services */}
           <div>
-            <h3 className="text-xl font-bold mb-5">Services</h3>
+            <h3 className="text-xl font-bold mb-5">
+              Services
+            </h3>
+
             <ul className="space-y-4 text-gray-400">
               <li>Safari Vehicle Hire</li>
-              <li>Private Tours</li>
-              <li>Group Safaris</li>
               <li>Airport Transfers</li>
+              <li>Group Tours</li>
+              <li>Private Safari Trips</li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-5">Contact Info</h3>
+            <h3 className="text-xl font-bold mb-5">
+              Contact Info
+            </h3>
+
             <ul className="space-y-4 text-gray-400">
               <li>📍 Kimana, Amboseli - Kenya</li>
-              <li>📞 +254 7XX XXX XXX</li>
+              <li>📞 +254 724605140</li>
               <li>✉ info@kimanasafari.com</li>
             </ul>
-          </div>
 
+            <a
+              href="https://wa.me/254724605140"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block mt-6 bg-green-500 hover:bg-green-600 text-black font-bold px-4 sm:px-6 md:px-8 py-3 rounded-lg transition"
+            >
+              WhatsApp Booking
+            </a>
+          </div>
         </div>
 
+        {/* Bottom */}
         <div className="border-t border-gray-800 mt-14 pt-8 text-center text-gray-500">
           © 2026 Kimana Safari Vehicles. All Rights Reserved.
         </div>
-
       </footer>
 
     </div>

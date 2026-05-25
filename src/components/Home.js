@@ -7,7 +7,7 @@ import cruiser2 from "../assets/cruiser2.jpg";
 import cruiser3 from "../assets/cruiser3.jpg";
 import cruiser4 from "../assets/cruiser4.jpg";
 import tsavo1 from "../assets/tsavo1.jpg";
-import tsavo2 from "../assets/tsavo2.jpg";
+//import tsavo2 from "../assets/tsavo2.jpg";
 import amboseli1 from "../assets/amboseli1.jpg";
 import amboseli2 from "../assets/amboseli2.jpg";
 import chyulu1 from "../assets/chyulu1.jpg";
@@ -35,19 +35,36 @@ function Home() {
       {/* HERO SECTION */}
 <section
   id="home"
-  className="relative min-h-screen flex items-center overflow-hidden"
+  className="relative min-h-screen flex items-center overflow-hidden pt-24 sm:pt-28"
 >
 
+  {/* BACKGROUND IMAGE */}
   {/* BACKGROUND SLIDER */}
-  <div className="absolute inset-0">
+<div className="absolute inset-0">
+  
+  {images.map((img, i) => (
     <div
-      className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105"
-      style={{ backgroundImage: `url(${images[index]})` }}
+      key={i}
+      className="absolute inset-0 bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center 75%",
+        opacity: i === index ? 1 : 0,
+        transform: i === index ? "scale(1.05)" : "scale(1.1)",
+        transition: "opacity 1.2s ease, transform 6s ease",
+      }}
     />
-  </div>
+  ))}
 
-  {/* LAYERED OVERLAY (PRO LEVEL LOOK) */}
-  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+</div>
+
+  {/* DARK CINEMATIC LAYERS */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,215,0,0.12),transparent_60%)]" />
+
+  {/* SUBTLE VIGNETTE */}
+  <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,0.7)]" />
 
   {/* CONTENT */}
   <div className="relative z-10 w-full px-5 sm:px-8 md:px-12">
@@ -55,48 +72,56 @@ function Home() {
 
       <div className="max-w-2xl text-white">
 
-        <p className="uppercase tracking-[6px] text-yellow-400 mb-5 font-semibold animate-pulse">
-          Booking Safari Experience
+        {/* SMALL TAG */}
+        <p className="inline-flex items-center gap-2 uppercase tracking-[6px] text-yellow-400 mb-6 font-semibold animate-pulse">
+          <span className="w-2 h-2 bg-yellow-400 rounded-full animate-ping"></span>
+          Premium Safari Experience
         </p>
 
-       <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-          Explore Kenya With Premium Safari Vehicles
+        {/* TITLE */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6">
+          Explore Kenya With{" "}
+          <span className="text-yellow-400">Luxury Safari Vehicles</span>
         </h1>
 
-        <p className="text-gray-300 text-sm sm:text-base md:text-xl leading-7 md:leading-8 mb-8">
-          Reliable safari transport services in Kimana and Amboseli for tourists,
-          photographers, families, and adventure groups seeking unforgettable wildlife experiences.
+        {/* DESCRIPTION */}
+        <p className="text-gray-300 text-sm sm:text-base md:text-xl leading-7 md:leading-8 mb-8 max-w-xl">
+          Reliable safari transport in Amboseli, Tsavo & Chyulu Hills.
+          Experience wildlife adventures with comfort, safety, and local expertise.
         </p>
 
         {/* CTA BUTTONS */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto ">
+        <div className="flex flex-col sm:flex-row gap-4">
 
-          {/* PRIMARY CTA - WHATSAPP */}
+          {/* PRIMARY CTA */}
           <a
-            href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle%20in%20Amboseli"
+            href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
             target="_blank"
             rel="noreferrer"
-            className="group relative bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-xl transition duration-300 shadow-lg hover:shadow-yellow-500/40 overflow-hidden"
+            className="group relative inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-7 py-3 rounded-xl transition duration-300 shadow-xl hover:shadow-yellow-500/40 overflow-hidden"
           >
-            <span className="relative z-10">Book on WhatsApp</span>
+            <span className="relative z-10">Book Safari Now</span>
 
-            {/* hover shine effect */}
-            <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></span>
+            <span className="absolute inset-0 bg-white/20 translate-x-[-120%] group-hover:translate-x-0 transition-transform duration-500"></span>
           </a>
 
           {/* SECONDARY CTA */}
           <a
-  href="/vehicles"
-  className="border border-white/70 hover:bg-white hover:text-black px-8 py-4 rounded-xl transition duration-300 backdrop-blur-sm"
->
-  Explore Fleet
-</a>
+            href="/vehicles"
+            className="inline-flex items-center justify-center border border-yellow-400/40 bg-white/5 hover:bg-yellow-400 hover:text-black text-white px-7 py-3 rounded-xl transition duration-300 backdrop-blur-md"
+          >
+            Explore Fleet
+          </a>
 
         </div>
 
-        {/* QUICK TRUST LINE */}
-        <div className="mt-8 text-sm text-gray-400">
-          ✔ 24/7 Support &nbsp; • &nbsp; ✔ Trusted Local Drivers &nbsp; • &nbsp; ✔ Fast Booking
+        {/* TRUST BAR */}
+        <div className="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
+          <span>✔ 24/7 Support</span>
+          <span>•</span>
+          <span>✔ Trusted Local Drivers</span>
+          <span>•</span>
+          <span>✔ Fast Booking</span>
         </div>
 
       </div>
@@ -104,7 +129,7 @@ function Home() {
     </div>
   </div>
 
-  {/* DOT NAVIGATION */}
+  {/* DOT NAVIGATION (IMPROVED) */}
   <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
     {images.map((_, i) => (
       <button
@@ -112,8 +137,8 @@ function Home() {
         onClick={() => setIndex(i)}
         className={`transition-all duration-300 rounded-full ${
           i === index
-            ? "w-8 h-2 bg-yellow-500"
-            : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
+            ? "w-10 h-2 bg-yellow-400 shadow-lg shadow-yellow-400/40"
+            : "w-2.5 h-2.5 bg-white/30 hover:bg-white/70"
         }`}
       />
     ))}
@@ -122,7 +147,7 @@ function Home() {
 </section>
 
       {/* ABOUT SECTION */}
-    <section className="py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
+    <section className="py-20 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
         {/* IMAGE SLIDER SIDE */}
@@ -205,214 +230,179 @@ function Home() {
       </div>
     </section>
 
-
-{/* TOP SAFARI DESTINATIONS */}
- {/* TOP SAFARI DESTINATIONS */}
-<section className="py-28 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+{/* OUR SERVICES (PREMIUM VERTICAL VERSION) */}
+<section className="py-24 md:py-32 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-white via-gray-50 to-gray-100">
   <div className="max-w-7xl mx-auto">
 
     {/* HEADER */}
     <div className="text-center mb-20">
       <p className="uppercase tracking-[6px] text-yellow-500 font-semibold mb-4">
-        Top Destinations
+        Our Services
       </p>
 
       <h2 className="text-4xl md:text-5xl font-bold mb-6">
-        Explore Kenya’s Safari Wonders
+        Luxury Safari Experiences Tailored for You
       </h2>
 
       <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-8">
-        Experience world-class wildlife encounters, breathtaking landscapes,
-        and unforgettable safari adventures across Kenya’s most iconic parks.
+        From rugged 4x4 safari cruisers to guided wildlife expeditions, we deliver
+        unforgettable journeys across Amboseli, Tsavo, and Chyulu Hills.
       </p>
     </div>
 
     {/* GRID */}
-    <div className="grid md:grid-cols-3 gap-10">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-      {/* AMBOSELI */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
+      {/* SERVICE 1 */}
+      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 border border-gray-100">
 
-        <div className="relative overflow-hidden">
+        {/* IMAGE TOP */}
+        <div className="relative h-64 overflow-hidden">
           <img
-            src={amboseli2}
-            alt="Amboseli National Park"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
+            src={cruiser1}
+            alt="Safari Vehicle Hire"
+            className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-yellow-500 text-black px-3 py-1 text-xs rounded-full font-semibold">
-              Featured Safari
-            </span>
-          </div>
+          <span className="absolute bottom-4 left-4 bg-yellow-500 text-black px-3 py-1 text-xs font-bold rounded-full">
+            Vehicle Hire
+          </span>
         </div>
 
-        <div className="p-5 sm:p-8">
-          <h3 className="text-2xl font-bold mb-3">Amboseli National Park</h3>
+        {/* TEXT BELOW */}
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-3">
+            Premium Safari Vehicle Hire
+          </h3>
 
-          <p className="text-gray-600 leading-7 mb-6">
-            Famous for large elephant herds and iconic Kilimanjaro views.
+          <p className="text-gray-600 leading-7 text-sm mb-4">
+            Travel in fully equipped 4x4 safari cruisers designed for comfort,
+            safety, and off-road adventure across Kenya’s parks.
           </p>
 
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Amboseli
-          </button>
+          <ul className="text-xs text-gray-500 space-y-2 mb-4">
+            <li>✔ Pop-up roof for wildlife viewing</li>
+            <li>✔ Comfortable long-distance seating</li>
+            <li>✔ Professional safari drivers</li>
+          </ul>
+
+          <div className="text-yellow-600 font-semibold text-sm">
+            Best for: Families & photographers
+          </div>
         </div>
       </div>
 
-      {/* CHYULU */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
+      {/* SERVICE 2 */}
+      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 border border-gray-100">
 
-        <div className="relative overflow-hidden">
+        <div className="relative h-64 overflow-hidden">
           <img
-            src={chyulu2}
-            alt="Chyulu Hills"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
+            src={cruiser2}
+            alt="Guided Safari"
+            className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-green-500 text-black px-3 py-1 text-xs rounded-full font-semibold">
-              Nature Escape
-            </span>
-          </div>
+          <span className="absolute bottom-4 left-4 bg-green-500 text-black px-3 py-1 text-xs font-bold rounded-full">
+            Guided Tours
+          </span>
         </div>
 
-        <div className="p-8">
-          <h3 className="text-2xl font-bold mb-3">Chyulu Hills</h3>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-3">
+            Expert Guided Wildlife Safaris
+          </h3>
 
-          <p className="text-gray-600 leading-7 mb-6">
-            Volcanic landscapes, caves, hiking trails, and scenic views.
+          <p className="text-gray-600 leading-7 text-sm mb-4">
+            Explore Kenya with experienced local guides who know wildlife behavior,
+            migration routes, and hidden viewing spots.
           </p>
 
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Chyulu
-          </button>
+          <ul className="text-xs text-gray-500 space-y-2 mb-4">
+            <li>✔ Professional safari guides</li>
+            <li>✔ Best sunrise & sunset drives</li>
+            <li>✔ Wildlife tracking expertise</li>
+          </ul>
+
+          <div className="text-yellow-600 font-semibold text-sm">
+            Best for: Wildlife photographers
+          </div>
         </div>
       </div>
 
-      {/* MAASAI MARA */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
+      {/* SERVICE 3 */}
+      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 border border-gray-100">
 
-        <div className="relative overflow-hidden">
+        <div className="relative h-64 overflow-hidden">
           <img
-            src={amboseli1}
-            alt="Maasai Mara"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
+            src={cruiser3}
+            alt="Private Safari"
+            className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-purple-500 text-white px-3 py-1 text-xs rounded-full font-semibold">
-              Big Five Safari
-            </span>
-          </div>
+          <span className="absolute bottom-4 left-4 bg-purple-500 text-white px-3 py-1 text-xs font-bold rounded-full">
+            Private Trips
+          </span>
         </div>
 
-        <div className="p-8">
-          <h3 className="text-2xl font-bold mb-3">Maasai Mara Reserve</h3>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-3">
+            Private Safari Packages
+          </h3>
 
-          <p className="text-gray-600 leading-7 mb-6">
-            World-famous migration and Big Five wildlife experience.
+          <p className="text-gray-600 leading-7 text-sm mb-4">
+            Enjoy personalized safari experiences designed for couples,
+            families, and VIP travelers seeking privacy.
           </p>
 
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Maasai Mara
-          </button>
+          <ul className="text-xs text-gray-500 space-y-2 mb-4">
+            <li>✔ Flexible schedules</li>
+            <li>✔ Honeymoon safari options</li>
+            <li>✔ Luxury tailored trips</li>
+          </ul>
+
+          <div className="text-yellow-600 font-semibold text-sm">
+            Best for: Couples & VIP guests
+          </div>
         </div>
       </div>
 
-      {/* LAKE NAIVASHA */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
+      {/* SERVICE 4 */}
+      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 border border-gray-100">
 
-        <div className="relative overflow-hidden">
+        <div className="relative h-64 overflow-hidden">
           <img
-            src={chyulu1}
-            alt="Lake Naivasha"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
+            src={cruiser4}
+            alt="Day Trips"
+            className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-blue-500 text-white px-3 py-1 text-xs rounded-full font-semibold">
-              Scenic Lake
-            </span>
-          </div>
+          <span className="absolute bottom-4 left-4 bg-blue-500 text-white px-3 py-1 text-xs font-bold rounded-full">
+            Day Trips
+          </span>
         </div>
 
-        <div className="p-8">
-          <h3 className="text-2xl font-bold mb-3">Lake Naivasha</h3>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-3">
+            Safari Day Trips
+          </h3>
 
-          <p className="text-gray-600 leading-7 mb-6">
-            Hippos, boat rides, bird watching, and peaceful safari escapes.
+          <p className="text-gray-600 leading-7 text-sm mb-4">
+            Short but powerful safari experiences to Amboseli, Tsavo, and nearby parks.
           </p>
 
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Naivasha
-          </button>
-        </div>
-      </div>
+          <ul className="text-xs text-gray-500 space-y-2 mb-4">
+            <li>✔ Half & full-day safaris</li>
+            <li>✔ Hotel pickup & drop-off</li>
+            <li>✔ Affordable packages</li>
+          </ul>
 
-      {/* TSAVO */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
-
-        <div className="relative overflow-hidden">
-          <img
-            src={tsavo2}
-            alt="Tsavo National Park"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-red-500 text-white px-3 py-1 text-xs rounded-full font-semibold">
-              Wildlife Giant
-            </span>
+          <div className="text-yellow-600 font-semibold text-sm">
+            Best for: Tourists & short stays
           </div>
-        </div>
-
-        <div className="p-8">
-          <h3 className="text-2xl font-bold mb-3">Tsavo National Park</h3>
-
-          <p className="text-gray-600 leading-7 mb-6">
-            Red elephants, lions, rivers, and raw African wilderness.
-          </p>
-
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Tsavo
-          </button>
-        </div>
-      </div>
-
-      {/* NEW: HELL'S GATE */}
-      <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500">
-
-        <div className="relative overflow-hidden">
-          <img
-            src={chyulu2}
-            alt="Hell's Gate National Park"
-            className="h-72 w-full object-cover group-hover:scale-110 transition duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="bg-orange-500 text-white px-3 py-1 text-xs rounded-full font-semibold">
-              Adventure Park
-            </span>
-          </div>
-        </div>
-
-        <div className="p-8">
-          <h3 className="text-2xl font-bold mb-3">Hell’s Gate National Park</h3>
-
-          <p className="text-gray-600 leading-7 mb-6">
-            Cycling safaris, cliffs, gorges, and walking among wildlife in one of Kenya’s most unique parks.
-          </p>
-
-          <button className="w-full bg-black text-white py-3 rounded-xl hover:bg-yellow-500 hover:text-black transition font-semibold">
-            Explore Hell’s Gate
-          </button>
         </div>
       </div>
 
@@ -420,9 +410,8 @@ function Home() {
   </div>
 </section>
 
-
 {/* TOP DAY TRIPS */}
-<section className="py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
+<section className="py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -527,7 +516,7 @@ function Home() {
 
     
     {/* WHY CHOOSE US */}
-<section className="relative py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+<section className="relative py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
 
   {/* subtle background glow */}
   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-300/10 blur-3xl rounded-full"></div>
@@ -620,7 +609,7 @@ function Home() {
 
 
 {/* CTA SECTION */}
-<section className="relative py-28 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden">
+<section className="relative py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden">
 
   {/* background effect */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,0,0.15),transparent_60%)]"></div>
@@ -652,7 +641,7 @@ function Home() {
 </section>
 
       {/* FOOTER */}
-      <footer className="bg-black text-white py-16">
+      <footer className="bg-red-950 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Brand */}

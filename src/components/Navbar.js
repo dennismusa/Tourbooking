@@ -1,33 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path) =>
+    location.pathname === path ? "text-yellow-400" : "text-white";
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50">
 
-      {/* GLASS BACKGROUND */}
-      <div className="backdrop-blur-xl bg-black/40 border-b border-yellow-400/20 shadow-lg">
+      {/* TOP BAR */}
+      <div className="backdrop-blur-xl bg-black/40 border-b border-yellow-400/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-
           <div className="flex items-center justify-between h-20">
 
             {/* LOGO */}
-            <Link
-              to="/"
-              className="flex items-center gap-3 group"
-            >
-              <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-lg shadow-lg">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold">
                 🦁
               </div>
 
               <div>
-                <h1 className="text-white font-bold text-lg sm:text-2xl tracking-wide group-hover:text-yellow-300 transition">
+                <h1 className="text-white font-bold text-lg">
                   Kimana Safari
                 </h1>
-
-                <p className="text-gray-300 text-xs tracking-[2px] uppercase hidden sm:block">
+                <p className="text-gray-300 text-[10px] uppercase tracking-widest hidden sm:block">
                   Premium Safari Vehicles
                 </p>
               </div>
@@ -35,114 +34,117 @@ function Navbar() {
 
             {/* DESKTOP MENU */}
             <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+              <Link className="hover:text-yellow-300 text-white/90" to="/">Home</Link>
+              <Link className="hover:text-yellow-300 text-white/90" to="/destinations">Destinations</Link>
+              <Link className="hover:text-yellow-300 text-white/90" to="/gallery">Gallery</Link>
+              <Link className="hover:text-yellow-300 text-white/90" to="/vehicles">Vehicles</Link>
+              <Link className="hover:text-yellow-300 text-white/90" to="/contact">Contact</Link>
 
-              <Link
-                className="text-white/90 hover:text-yellow-300 transition duration-300"
-                to="/"
-              >
-                Home
-              </Link>
-
-              <Link
-                className="text-white/90 hover:text-yellow-300 transition duration-300"
-                to="/gallery"
-              >
-                Gallery
-              </Link>
-
-              <Link
-                className="text-white/90 hover:text-yellow-300 transition duration-300"
-                to="/vehicles"
-              >
-                Vehicles
-              </Link>
-
-              <Link
-                className="text-white/90 hover:text-yellow-300 transition duration-300"
-                to="/contact"
-              >
-                Contact
-              </Link>
-
-              {/* CTA BUTTON */}
               <a
-                href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-yellow-400 hover:bg-yellow-300 text-black px-5 py-2.5 rounded-full font-semibold whitespace-nowrap transition shadow-md hover:shadow-yellow-400/30"
+                href="https://wa.me/254724605140"
+                className="bg-yellow-400 hover:bg-yellow-300 text-black px-5 py-2 rounded-full font-semibold"
               >
                 Book Safari
               </a>
-
             </div>
 
-            {/* MOBILE MENU BUTTON */}
+            {/* MOBILE BUTTON */}
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
+              onClick={() => setMenuOpen(true)}
               className="md:hidden text-white text-3xl"
             >
-              {menuOpen ? "✕" : "☰"}
+              ☰
             </button>
 
           </div>
-
         </div>
-
       </div>
 
-      {/* MOBILE MENU */}
+      {/* OVERLAY */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ${
-          menuOpen
-            ? "max-h-[400px] opacity-100"
-            : "max-h-0 opacity-0"
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
+      />
+
+      {/* SLIDE MENU */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-sm bg-black/90 backdrop-blur-2xl shadow-2xl z-50 transform transition-transform duration-500 md:hidden flex flex-col
+        ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="bg-black/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 flex flex-col gap-5 text-white shadow-2xl">
+
+        {/* HEADER */}
+        <div className="flex items-center justify-between p-6 border-b border-white/10">
+          <h2 className="text-white font-bold text-lg">Menu</h2>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-white text-2xl"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* LINKS */}
+        <div className="flex flex-col gap-6 px-6 py-10 text-sm">
 
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="hover:text-yellow-300 transition text-lg"
+            className={`${isActive("/")} hover:text-yellow-300 transition`}
           >
-            Home
+            🏠 Home
+          </Link>
+
+          <Link
+            to="/destinations"
+            onClick={() => setMenuOpen(false)}
+            className={`${isActive("/destinations")} hover:text-yellow-300`}
+          >
+            🗺️ Destinations
           </Link>
 
           <Link
             to="/gallery"
             onClick={() => setMenuOpen(false)}
-            className="hover:text-yellow-300 transition text-lg"
+            className={`${isActive("/gallery")} hover:text-yellow-300`}
           >
-            Gallery
+            📸 Gallery
           </Link>
 
           <Link
             to="/vehicles"
             onClick={() => setMenuOpen(false)}
-            className="hover:text-yellow-300 transition text-lg"
+            className={`${isActive("/vehicles")} hover:text-yellow-300`}
           >
-            Vehicles
+            🚙 Vehicles
           </Link>
 
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="hover:text-yellow-300 transition text-lg"
+            className={`${isActive("/contact")} hover:text-yellow-300`}
           >
-            Contact
+            📞 Contact
           </Link>
+        </div>
 
-          {/* MOBILE CTA */}
+        {/* BOTTOM CTA */}
+        <div className="mt-auto p-6 border-t border-white/10">
           <a
-            href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
+            href="https://wa.me/254724605140"
             target="_blank"
             rel="noreferrer"
-            className="mt-4 bg-yellow-400 hover:bg-yellow-300 text-center text-black py-3 rounded-xl font-bold transition duration-300"
+            className="block text-center bg-yellow-400 hover:bg-yellow-300 text-black py-3 rounded-xl font-semibold text-sm transition"
           >
-            BookUs
+            Book Safari Now
           </a>
 
+          <p className="text-center text-gray-500 text-[11px] mt-3">
+            24/7 Safari Booking • Fast Response
+          </p>
         </div>
+
       </div>
 
     </nav>
