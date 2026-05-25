@@ -91,29 +91,27 @@ function Home() {
         </p>
 
         {/* CTA BUTTONS */}
-        <div className="flex flex-col sm:flex-row gap-4">
+<div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
 
-          {/* PRIMARY CTA */}
-          <a
-            href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
-            target="_blank"
-            rel="noreferrer"
-            className="group relative inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-7 py-3 rounded-xl transition duration-300 shadow-xl hover:shadow-yellow-500/40 overflow-hidden"
-          >
-            <span className="relative z-10">Book Safari Now</span>
+  {/* PRIMARY CTA */}
+  <a
+    href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
+    target="_blank"
+    rel="noreferrer"
+    className="w-full sm:w-auto inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-7 py-3 rounded-xl transition duration-300 shadow-xl hover:shadow-yellow-500/40"
+  >
+    Book Safari Now
+  </a>
 
-            <span className="absolute inset-0 bg-white/20 translate-x-[-120%] group-hover:translate-x-0 transition-transform duration-500"></span>
-          </a>
+  {/* SECONDARY CTA */}
+  <Link
+    to="/vehicles"
+    className="w-full sm:w-auto inline-flex items-center justify-center border border-yellow-400/40 bg-white/5 hover:bg-yellow-400 hover:text-black text-white px-7 py-3 rounded-xl transition duration-300 backdrop-blur-md"
+  >
+    Explore Fleet
+  </Link>
 
-          {/* SECONDARY CTA */}
-          <a
-            href="/vehicles"
-            className="inline-flex items-center justify-center border border-yellow-400/40 bg-white/5 hover:bg-yellow-400 hover:text-black text-white px-7 py-3 rounded-xl transition duration-300 backdrop-blur-md"
-          >
-            Explore Fleet
-          </a>
-
-        </div>
+</div>
 
         {/* TRUST BAR */}
         <div className="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
