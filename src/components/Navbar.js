@@ -24,7 +24,7 @@ function Navbar() {
 
               <div>
                 <h1 className="text-white font-bold text-lg">
-                  Kimana Safari
+                  Amboseli Link Safari
                 </h1>
                 <p className="text-gray-300 text-[10px] uppercase tracking-widest hidden sm:block">
                   Premium Safari Vehicles

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import cruiser1 from "../assets/cruiser1.jpg";
+import tourvan from "../assets/tourvan.jpg";
 import cruiser2 from "../assets/cruiser2.jpg";
 import cruiser4 from "../assets/cruiser4.jpg";
-import cruiser5 from "../assets/cruiser5.jpg";
+//import cruiser5 from "../assets/cruiser5.jpg";
 
 function FleetShowcase() {
   const [search, setSearch] = useState("");
@@ -18,7 +19,7 @@ function FleetShowcase() {
       gallery: [cruiser1, cruiser2],
       seats: "7 Seats",
       type: "4x4 Safari Jeep",
-      price: "150",
+      price: " ",
       category: "4x4",
       rating: 4.9,
       transmission: "Automatic",
@@ -35,11 +36,11 @@ function FleetShowcase() {
     },
     {
       name: "Safari Tour Van",
-      image: cruiser2,
+      image: tourvan,
       gallery: [cruiser2, cruiser4],
       seats: "9 Seats",
       type: "Tour Van",
-      price: "120",
+      price: " ",
       category: "group",
       rating: 4.7,
       transmission: "Manual",
@@ -54,34 +55,14 @@ function FleetShowcase() {
         "Group Friendly",
       ],
     },
-    {
-      name: "Luxury Land Cruiser",
-      image: cruiser5,
-      gallery: [cruiser5, cruiser1],
-      seats: "6 Seats",
-      type: "VIP Safari Vehicle",
-      price: "220",
-      category: "luxury",
-      rating: 5.0,
-      transmission: "Automatic",
-      fuel: "Diesel",
-      location: "Luxury Safari Routes",
-      description:
-        "Luxury safari vehicle offering elite comfort, premium interiors, photography-friendly design, and VIP safari experiences.",
-      features: [
-        "Luxury Interior",
-        "WiFi",
-        "Mini Fridge",
-        "VIP Service",
-      ],
-    },
+    
     {
       name: "Extended Safari Van",
       image: cruiser4,
       gallery: [cruiser4, cruiser2],
       seats: "10 Seats",
       type: "Group Tour Vehicle",
-      price: "180",
+      price: " ",
       category: "group",
       rating: 4.6,
       transmission: "Manual",

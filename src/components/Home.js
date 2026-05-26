@@ -2,23 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import cruiser1 from "../assets/cruiser1.jpg";
-import cruiser2 from "../assets/cruiser2.jpg";
-import cruiser3 from "../assets/cruiser3.jpg";
-import cruiser4 from "../assets/cruiser4.jpg";
-import tsavo1 from "../assets/tsavo1.jpg";
-//import tsavo2 from "../assets/tsavo2.jpg";
-import amboseli1 from "../assets/amboseli1.jpg";
-import amboseli2 from "../assets/amboseli2.jpg";
-import chyulu1 from "../assets/chyulu1.jpg";
-import chyulu2 from "../assets/chyulu2.jpg";
-//import video3 from "../assets/video3.mp4";
+//import cruiser1 from "../assets/cruiser1.jpg";
+//import cruiser2 from "../assets/cruiser2.jpg";
 //import cruiser3 from "../assets/cruiser3.jpg";
 //import cruiser4 from "../assets/cruiser4.jpg";
-//import cruiser5 from "../assets/cruiser5.jpg";
+import tsavo1 from "../assets/tsavo1.jpg";
+import kandili3 from "../assets/kandili3.jpg";
+import amboseli1 from "../assets/amboseli1.jpg";
+import kandili7 from "../assets/kandili7.jpg";
+import kandili8 from "../assets/kandili8.jpg";
+import chyulu1 from "../assets/chyulu1.jpg";
+import tour1 from "../assets/tour1.jpg";
+import kandili1 from "../assets/kandili1.jpg";
+import kandili5 from "../assets/kandili5.jpg";
+import kandili10 from "../assets/kandili10.jpg";
+import kandili9 from "../assets/kandili9.jpg";
 function Home() {
 
-  const images = [cruiser1, cruiser2, cruiser3, amboseli1, amboseli2, chyulu2, cruiser4];
+  const images = [kandili5,kandili1,kandili10, kandili10, tour1];
   const [index, setIndex] = useState(0);
   
 
@@ -32,111 +33,91 @@ function Home() {
   return (
     <div className="bg-white text-gray-800 overflow-x-hidden">
       
-      {/* HERO SECTION */}
-<section
+ <section
   id="home"
-  className="relative min-h-screen flex items-center overflow-hidden pt-24 sm:pt-28"
+  className="relative min-h-[65vh] sm:min-h-[70vh] md:min-h-[75vh] flex items-center overflow-hidden pt-20 sm:pt-24"
 >
 
-  {/* BACKGROUND IMAGE */}
   {/* BACKGROUND SLIDER */}
-<div className="absolute inset-0">
-  
-  {images.map((img, i) => (
-    <div
-      key={i}
-      className="absolute inset-0 bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
-      style={{
-        backgroundImage: `url(${img})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center 75%",
-        opacity: i === index ? 1 : 0,
-        transform: i === index ? "scale(1.05)" : "scale(1.1)",
-        transition: "opacity 1.2s ease, transform 6s ease",
-      }}
-    />
-  ))}
+  <div className="absolute inset-0 overflow-hidden">
 
-</div>
+    {images.map((img, i) => (
+      <div
+        key={i}
+        className="absolute inset-0 bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 60%",
+          opacity: i === index ? 1 : 0,
+          transform: i === index ? "scale(1.01)" : "scale(1.05)",
+          transition: "opacity 1.2s ease, transform 8s ease",
+        }}
+      />
+    ))}
 
-  {/* DARK CINEMATIC LAYERS */}
-  <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,215,0,0.12),transparent_60%)]" />
+  </div>
 
-  {/* SUBTLE VIGNETTE */}
-  <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,0.7)]" />
+  {/* DARK OVERLAY (SOFTER FOR SMALLER HERO) */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/30" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,215,0,0.10),transparent_65%)]" />
 
   {/* CONTENT */}
   <div className="relative z-10 w-full px-5 sm:px-8 md:px-12">
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-6xl mx-auto">
 
-      <div className="max-w-2xl text-white">
+      <div className="max-w-xl text-white">
 
-        {/* SMALL TAG */}
-        <p className="inline-flex items-center gap-2 uppercase tracking-[6px] text-yellow-400 mb-6 font-semibold animate-pulse">
-          <span className="w-2 h-2 bg-yellow-400 rounded-full animate-ping"></span>
+        {/* TAG */}
+        <p className="uppercase tracking-[5px] text-yellow-400 mb-4 font-semibold text-xs sm:text-sm">
           Premium Safari Experience
         </p>
 
         {/* TITLE */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
           Explore Kenya With{" "}
           <span className="text-yellow-400">Luxury Safari Vehicles</span>
         </h1>
 
         {/* DESCRIPTION */}
-        <p className="text-gray-300 text-sm sm:text-base md:text-xl leading-7 md:leading-8 mb-8 max-w-xl">
-          Reliable safari transport in Amboseli, Tsavo & Chyulu Hills.
-          Experience wildlife adventures with comfort, safety, and local expertise.
+        <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-7 mb-6">
+          Reliable safari transport in Amboseli, Tsavo & Chyulu Hills with comfort,
+          safety, and expert local guides.
         </p>
 
         {/* CTA BUTTONS */}
-<div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
 
-  {/* PRIMARY CTA */}
-  <a
-    href="https://wa.me/254724605140?text=Hello%20I%20want%20to%20book%20a%20safari%20vehicle"
-    target="_blank"
-    rel="noreferrer"
-    className="w-full sm:w-auto inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-7 py-3 rounded-xl transition duration-300 shadow-xl hover:shadow-yellow-500/40"
-  >
-    Book Safari Now
-  </a>
+          <a
+            href="https://wa.me/254724605140"
+            className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl shadow-md transition text-center"
+          >
+            Book Safari Now
+          </a>
 
-  {/* SECONDARY CTA */}
-  <Link
-    to="/vehicles"
-    className="w-full sm:w-auto inline-flex items-center justify-center border border-yellow-400/40 bg-white/5 hover:bg-yellow-400 hover:text-black text-white px-7 py-3 rounded-xl transition duration-300 backdrop-blur-md"
-  >
-    Explore Fleet
-  </Link>
+          <Link
+            to="/vehicles"
+            className="border border-yellow-400/40 bg-white/5 hover:bg-yellow-400 hover:text-black text-white px-6 py-3 rounded-xl transition backdrop-blur-md text-center"
+          >
+            Explore Fleet
+          </Link>
 
-</div>
-
-        {/* TRUST BAR */}
-        <div className="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
-          <span>✔ 24/7 Support</span>
-          <span>•</span>
-          <span>✔ Trusted Local Drivers</span>
-          <span>•</span>
-          <span>✔ Fast Booking</span>
         </div>
 
       </div>
-
     </div>
   </div>
 
-  {/* DOT NAVIGATION (IMPROVED) */}
-  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+  {/* DOT NAVIGATION (SMALLER + CLEANER) */}
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
     {images.map((_, i) => (
       <button
         key={i}
         onClick={() => setIndex(i)}
-        className={`transition-all duration-300 rounded-full ${
+        className={`rounded-full transition-all duration-300 ${
           i === index
-            ? "w-10 h-2 bg-yellow-400 shadow-lg shadow-yellow-400/40"
-            : "w-2.5 h-2.5 bg-white/30 hover:bg-white/70"
+            ? "w-7 h-2 bg-yellow-400"
+            : "w-2 h-2 bg-white/30 hover:bg-white/60"
         }`}
       />
     ))}
@@ -257,7 +238,7 @@ function Home() {
         {/* IMAGE TOP */}
         <div className="relative h-64 overflow-hidden">
           <img
-            src={cruiser1}
+            src={kandili3}
             alt="Safari Vehicle Hire"
             className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
@@ -296,7 +277,7 @@ function Home() {
 
         <div className="relative h-64 overflow-hidden">
           <img
-            src={cruiser2}
+            src={kandili7}
             alt="Guided Safari"
             className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
@@ -334,7 +315,7 @@ function Home() {
 
         <div className="relative h-64 overflow-hidden">
           <img
-            src={cruiser3}
+            src={kandili8}
             alt="Private Safari"
             className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
@@ -372,7 +353,7 @@ function Home() {
 
         <div className="relative h-64 overflow-hidden">
           <img
-            src={cruiser4}
+            src={kandili9}
             alt="Day Trips"
             className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
           />
@@ -645,7 +626,7 @@ function Home() {
           {/* Brand */}
           <div>
             <h2 className="text-3xl font-bold text-yellow-500 mb-5">
-              Kimana Safari
+              Amboseli link safari
             </h2>
 
             <p className="text-gray-400 leading-8">
@@ -710,7 +691,7 @@ function Home() {
             <ul className="space-y-4 text-gray-400">
               <li>📍 Kimana, Amboseli - Kenya</li>
               <li>📞 +254 724605140</li>
-              <li>✉ info@kimanasafari.com</li>
+              <li>✉ amboselilink@gmail.com</li>
             </ul>
 
             <a
@@ -726,7 +707,7 @@ function Home() {
 
         {/* Bottom */}
         <div className="border-t border-gray-800 mt-14 pt-8 text-center text-gray-500">
-          © 2026 Kimana Safari Vehicles. All Rights Reserved.
+          © 2026 amboselilink Safari Vehicles. All Rights Reserved.
         </div>
       </footer>
     </div>
