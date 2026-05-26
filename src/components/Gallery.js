@@ -21,12 +21,14 @@ function Gallery() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000);
+  const length = slides.length;
 
-    return () => clearInterval(interval);
-  }, []);
+  const interval = setInterval(() => {
+    setCurrent((prev) => (prev + 1) % length);
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, [slides.length]);
 
   // =====================
   // EXPERIENCES DATA

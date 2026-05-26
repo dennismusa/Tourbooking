@@ -33,12 +33,12 @@ function Contact() {
 
             <div className="space-y-5 text-lg text-gray-300">
               <p>📍 <span className="text-white font-semibold">Kimana, Amboseli - Kenya</span></p>
-              <p>📞 +254 7XX XXX XXX</p>
+              <p>📞 +254724605140</p>
               <p>✉ info@kimanasafari.com</p>
             </div>
 
             <a
-              href="https://wa.me/254700000000"
+              href="https://wa.me/254724605140"
               target="_blank"
               rel="noreferrer"
               className="inline-block mt-10 bg-green-500 hover:bg-green-600 text-black font-bold px-8 py-4 rounded-xl transition"
