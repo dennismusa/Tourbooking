@@ -620,103 +620,103 @@ function FleetShowcase() {
       )}
 
       {/* FOOTER */}
-      <footer className="bg-red-950 text-white py-16">
-
-        <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-
-          <div>
-            <h2 className="text-3xl font-bold text-yellow-500 mb-5">
-              Kimana Safari
-            </h2>
-
-            <p className="text-gray-400 leading-8">
-              Premium safari vehicle hire services across Kenya with trusted
-              local drivers and unforgettable safari experiences.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-5">
-              Quick Links
-            </h3>
-
-            <ul className="space-y-4 text-gray-400">
-              <li>
-                <Link to="/" className="hover:text-yellow-500 transition">
-                  Home
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/vehicles"
-                  className="hover:text-yellow-500 transition"
-                >
-                  Fleet
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/gallery"
-                  className="hover:text-yellow-500 transition"
-                >
-                  Gallery
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/contact"
-                  className="hover:text-yellow-500 transition"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-5">
-              Services
-            </h3>
-
-            <ul className="space-y-4 text-gray-400">
-              <li>Safari Vehicle Hire</li>
-              <li>Luxury Tours</li>
-              <li>Airport Transfers</li>
-              <li>Photography Safaris</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-5">
+  {/* FOOTER */}
+  <footer className="bg-red-950 text-white py-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+  
+      {/* Brand */}
+      <div>
+        <h2 className="text-3xl font-bold text-yellow-500 mb-2">
+          Amboseli link safari
+        </h2>
+  
+        <p className="text-xs text-gray-500 mb-1">
+          Website designed & developed by Dennis Musa
+        </p>
+  
+        <p className="text-gray-400 leading-8 mb-3">
+          Professional safari vehicle hire services in Kimana and Amboseli. Safe, comfortable, and unforgettable safari experiences.
+        </p>
+  
+        <a
+          href="https://dennismusa.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-yellow-500 hover:underline text-sm font-semibold"
+        >
+          View Developer Portfolio
+        </a>
+      </div>
+  
+      {/* Links */}
+      <div>
+        <h3 className="text-xl font-bold mb-5">Quick Links</h3>
+  
+        <ul className="space-y-4 text-gray-400">
+          <li>
+            <Link to="/" className="hover:text-yellow-500 transition">
+              Home
+            </Link>
+          </li>
+  
+          <li>
+            <Link to="/vehicles" className="hover:text-yellow-500 transition">
+              Fleet
+            </Link>
+          </li>
+  
+          <li>
+            <Link to="/gallery" className="hover:text-yellow-500 transition">
+              Gallery
+            </Link>
+          </li>
+  
+          <li>
+            <Link to="/contact" className="hover:text-yellow-500 transition">
               Contact
-            </h3>
-
-            <ul className="space-y-4 text-gray-400">
-              <li>📍 Kimana, Amboseli - Kenya</li>
-              <li>📞 +254 724605140</li>
-              <li>✉ info@kimanasafari.com</li>
-            </ul>
-
-            <a
-              href="https://wa.me/254724605140"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block mt-6 bg-green-500 hover:bg-green-600 text-black font-bold px-8 py-3 rounded-xl transition"
-            >
-              WhatsApp Booking
-            </a>
-          </div>
-
-        </div>
-
-        <div className="border-t border-gray-800 mt-14 pt-8 text-center text-gray-500">
-          © 2026 Kimana Safari Vehicles. All Rights Reserved.
-        </div>
-
-      </footer>
+            </Link>
+          </li>
+        </ul>
+      </div>
+  
+      {/* Services */}
+      <div>
+        <h3 className="text-xl font-bold mb-5">Services</h3>
+  
+        <ul className="space-y-4 text-gray-400">
+          <li>Safari Vehicle Hire</li>
+          <li>Airport Transfers</li>
+          <li>Group Tours</li>
+          <li>Private Safari Trips</li>
+        </ul>
+      </div>
+  
+      {/* Contact */}
+      <div>
+        <h3 className="text-xl font-bold mb-5">Contact Info</h3>
+  
+        <ul className="space-y-4 text-gray-400">
+          <li>📍 Kimana, Amboseli - Kenya</li>
+          <li>📞 +254 724605140</li>
+          <li>✉ amboselilink@gmail.com</li>
+        </ul>
+  
+        <a
+          href="https://wa.me/254724605140"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block mt-6 bg-green-500 hover:bg-green-600 text-black font-bold px-6 py-3 rounded-lg transition"
+        >
+          WhatsApp Booking
+        </a>
+      </div>
+    </div>
+  
+    {/* Bottom */}
+    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+      © 2026 Amboseli Link Safari Vehicles. All Rights Reserved.
+    </div>
+  </footer>
 
     </div>
   );

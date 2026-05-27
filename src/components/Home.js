@@ -4,25 +4,47 @@ import { useState, useEffect } from "react";
 
 //import cruiser1 from "../assets/cruiser1.jpg";
 //import cruiser2 from "../assets/cruiser2.jpg";
-//import cruiser3 from "../assets/cruiser3.jpg";
-//import cruiser4 from "../assets/cruiser4.jpg";
-import tsavo1 from "../assets/tsavo1.jpg";
+import chala2 from "../assets/chala2.jpg";
+import jipe1 from "../assets/jipe1.jpg";
+import tsavo12 from "../assets/tsavo12.jpg";
 import kandili3 from "../assets/kandili3.jpg";
 import amboseli1 from "../assets/amboseli1.jpg";
 import kandili7 from "../assets/kandili7.jpg";
 import kandili8 from "../assets/kandili8.jpg";
-import chyulu1 from "../assets/chyulu1.jpg";
+import chyulu4 from "../assets/chyulu4.jpg";
 import tour1 from "../assets/tour1.jpg";
 import kandili1 from "../assets/kandili1.jpg";
 import kandili5 from "../assets/kandili5.jpg";
 import kandili10 from "../assets/kandili10.jpg";
 import kandili9 from "../assets/kandili9.jpg";
 function Home() {
-
-  const images = [kandili5,kandili1,kandili10, kandili10, tour1];
+  const images = [kandili5, kandili1, kandili10, kandili10, tour1];
   const [index, setIndex] = useState(0);
-  
 
+  // ================= REVIEWS STATE =================
+  const [reviews, setReviews] = useState([]);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [rating, setRating] = useState(5);
+  const [loading] = useState(false);
+const [loadingReviews] = useState(false);
+const [success] = useState(false);
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1trHeLZyVfmIYF6ZyBJ82fcgFVpwD4jneDp4BjuNG3cUSbY91OW6S6rhJQ/exec";
+ 
+
+  
+  // ================= LOAD REVIEWS (IMPORTANT PART 1) =================
+  useEffect(() => {
+    fetch(GOOGLE_SCRIPT_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data.reverse()); // newest first
+      })
+      .catch((err) => console.log("Error loading reviews:", err));
+  }, []);
+
+  // ================= SLIDER =================
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
@@ -30,6 +52,38 @@ function Home() {
 
     return () => clearInterval(interval);
   }, [images.length]);
+
+  // ================= SUBMIT REVIEW (IMPORTANT PART 2) =================
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !message) return;
+
+    const review = {
+      name,
+      message,
+      rating,
+      date: new Date().toISOString(),
+    };
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(review),
+      });
+
+      // instantly update UI
+      setReviews((prev) => [review, ...prev]);
+
+      setName("");
+      setMessage("");
+      setRating(5);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
   return (
     <div className="bg-white text-gray-800 overflow-x-hidden">
       
@@ -391,107 +445,110 @@ function Home() {
 
 {/* TOP DAY TRIPS */}
 <section className="py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
-      <div className="max-w-7xl mx-auto">
+  <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[4px] text-yellow-500 font-semibold mb-4">
-            Day Trips
-          </p>
+    {/* Header */}
+    <div className="text-center mb-14">
+      <p className="uppercase tracking-[4px] text-yellow-500 font-semibold mb-4">
+        Day Trips
+      </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Popular Safari Day Trips
-          </h2>
+      <h2 className="text-4xl md:text-5xl font-bold">
+        Popular Safari Day Trips
+      </h2>
 
-          <p className="text-gray-600 text-lg mt-6 max-w-3xl mx-auto">
-            Perfect short adventures for tourists staying around Amboseli and Kimana.
-          </p>
+      <p className="text-gray-600 text-lg mt-6 max-w-3xl mx-auto">
+        Carefully designed safari experiences combining wildlife, landscapes, culture, and adventure around Amboseli and nearby regions.
+      </p>
+    </div>
+
+    {/* Horizontal Scroll Row */}
+    <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+
+      {[
+        {
+          img: amboseli1,
+          icon: "🦁",
+          title: "Amboseli Full-Day Safari",
+          desc: "A complete game drive experience inside Amboseli National Park, home to large elephant herds, lions, giraffes, zebras, and breathtaking views of Mount Kilimanjaro. Perfect for wildlife photography and first-time visitors.",
+          highlights: "Elephants • Lions • Kilimanjaro Views",
+          duration: "1 Full Day",
+        },
+        {
+          img: chyulu4,
+          icon: "⛰️",
+          title: "Chyulu Hills Adventure",
+          desc: "A scenic escape into volcanic hills featuring caves, rolling green landscapes, hiking trails, and panoramic viewpoints. Ideal for nature lovers and photographers.",
+          highlights: "Hiking • Caves • Scenic Views",
+          duration: "Half Day",
+        },
+        {
+          img: tsavo12,
+          icon: "🐘",
+          title: "Tsavo East Safari",
+          desc: "Explore one of Kenya’s largest parks, famous for its red elephants, wide open savannahs, and raw untouched wilderness. A true African safari experience.",
+          highlights: "Red Elephants • Savannah • Big Wildlife",
+          duration: "1 Full Day",
+        },
+        {
+          img: chala2,
+          icon: "🌊",
+          title: "Lake Chala Excursion",
+          desc: "A hidden crater lake on the Kenya–Tanzania border offering crystal-clear waters, kayaking, hiking trails, and peaceful natural surroundings away from crowds.",
+          highlights: "Kayaking • Crater Lake • Peaceful Nature",
+          duration: "Half Day",
+        },
+        {
+          img: jipe1,
+          icon: "🐟",
+          title: "Lake Jipe Experience",
+          desc: "A quiet and scenic lake known for bird watching, hippos, fishing culture, and stunning reflections of Mount Kilimanjaro on calm mornings.",
+          highlights: "Bird Watching • Hippos • Kilimanjaro Views",
+          duration: "Half Day",
+        },
+      ].map((trip, i) => (
+        <div
+          key={i}
+          className="min-w-[300px] sm:min-w-[340px] bg-white rounded-3xl overflow-hidden shadow-lg snap-center hover:shadow-2xl transition"
+        >
+          <img
+            src={trip.img}
+            alt={trip.title}
+            className="h-52 w-full object-cover"
+          />
+
+          <div className="p-6">
+
+            {/* Icon + Title */}
+            <div className="text-2xl mb-2">{trip.icon}</div>
+
+            <h3 className="text-xl font-bold mb-2">
+              {trip.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-gray-600 text-sm leading-6 mb-4">
+              {trip.desc}
+            </p>
+
+            {/* Highlights */}
+            <div className="text-xs text-gray-500 mb-3">
+              <span className="font-semibold text-gray-700">Highlights:</span>{" "}
+              {trip.highlights}
+            </div>
+
+            {/* Duration */}
+            <div className="text-yellow-500 font-semibold text-sm">
+              Duration: {trip.duration}
+            </div>
+
+          </div>
         </div>
+      ))}
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-
-          {/* Amboseli */}
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
-            <img
-              src={amboseli1}
-              alt="Amboseli Safari"
-              className="h-60 w-full object-cover group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="p-8">
-              <div className="text-3xl mb-4">🦁</div>
-
-              <h3 className="text-2xl font-bold mb-3">
-                Amboseli Full Day Safari
-              </h3>
-
-              <p className="text-gray-600 leading-7 mb-6">
-                Enjoy a full-day game drive experience with elephants, lions,
-                giraffes, zebras, and Kilimanjaro views.
-              </p>
-
-              <div className="font-semibold text-yellow-500">
-                Duration: 1 Day
-              </div>
-            </div>
-          </div>
-
-          {/* Chyulu */}
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
-            <img
-              src={chyulu1}
-              alt="Chyulu Hills"
-              className="h-60 w-full object-cover group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="p-8">
-              <div className="text-3xl mb-4">⛰️</div>
-
-              <h3 className="text-2xl font-bold mb-3">
-                Chyulu Hills Adventure
-              </h3>
-
-              <p className="text-gray-600 leading-7 mb-6">
-                Scenic drive through hills with hiking, caves, photography,
-                and breathtaking landscapes.
-              </p>
-
-              <div className="font-semibold text-yellow-500">
-                Duration: Half Day
-              </div>
-            </div>
-          </div>
-
-          {/* Tsavo */}
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition group">
-            <img
-              src={tsavo1}
-              alt="Tsavo Safari"
-              className="h-60 w-full object-cover group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="p-8">
-              <div className="text-3xl mb-4">🐘</div>
-
-              <h3 className="text-2xl font-bold mb-3">
-                Tsavo East Safari Trip
-              </h3>
-
-              <p className="text-gray-600 leading-7 mb-6">
-                See red elephants, vast plains, lions, and Kenya’s raw wilderness
-                experience.
-              </p>
-
-              <div className="font-semibold text-yellow-500">
-                Duration: 1 Day
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     
     {/* WHY CHOOSE US */}
@@ -587,129 +644,292 @@ function Home() {
 </section>
 
 
-{/* CTA SECTION */}
-<section className="relative py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden">
 
-  {/* background effect */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,0,0.15),transparent_60%)]"></div>
 
-  <div className="max-w-4xl mx-auto text-center relative z-10">
 
-    <h2 className="text-4xl md:text-5xl font-bold mb-6">
-      Ready For Your Safari Adventure?
-    </h2>
+{/* ================= REVIEWS SECTION ================= */}
+<section className="py-24 md:py-32 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-gray-50 to-white">
+  
+<div className="relative space-y-5 max-h-[650px] overflow-y-auto pr-2 scroll-smooth
+  scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-gray-100
+  hover:scrollbar-thumb-yellow-500">
 
-    <p className="text-gray-300 text-lg leading-8 mb-10">
-      Book your safari vehicle today and explore Kenya’s most iconic wildlife destinations with comfort and confidence.
-    </p>
+  {/* TOP FADE (hides harsh cut-off) */}
+  <div className="pointer-events-none absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent z-10" />
 
-    <a
-      href="https://wa.me/254724605140"
-      target="_blank"
-      rel="noreferrer"
-      className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 rounded-xl transition duration-300 shadow-lg hover:shadow-yellow-500/30"
-    >
-      Book On WhatsApp
-    </a>
+  {/* BOTTOM FADE */}
+  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent z-10" />
 
-    <p className="text-xs text-gray-400 mt-6">
-      Fast response • Trusted drivers • 24/7 availability
-    </p>
 
+    {/* HEADER */}
+    <div className="text-center mb-14">
+      <p className="uppercase tracking-[6px] text-yellow-500 font-semibold mb-3">
+        Testimonials
+      </p>
+
+      <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        What Our Tourists Say
+      </h2>
+
+      <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        Real experiences from travelers who explored Kenya with our safari services.
+      </p>
+    </div>
+
+    {/* CONTENT GRID */}
+    <div className="grid lg:grid-cols-2 gap-14 items-start">
+
+      {/* ================= FORM ================= */}
+      <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
+
+        <h3 className="text-2xl font-bold mb-6 text-gray-800">
+          Leave a Review
+        </h3>
+
+        {/* SUCCESS MESSAGE */}
+        {success && (
+          <div className="mb-4 bg-green-50 text-green-700 px-4 py-3 rounded-xl text-sm">
+            Thank you! Your review has been submitted 🌍
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+
+          {/* NAME */}
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            maxLength={30}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+
+          {/* MESSAGE */}
+          <textarea
+            placeholder="Share your safari experience..."
+            value={message}
+            maxLength={300}
+            onChange={(e) => setMessage(e.target.value)}
+            className="w-full px-4 py-3 h-32 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition resize-none"
+          />
+
+          <div className="text-xs text-gray-400 text-right">
+            {message.length}/300
+          </div>
+
+          {/* STAR RATING (CLICKABLE) */}
+          <div>
+            <label className="text-sm text-gray-600 font-medium block mb-2">
+              Rating:
+            </label>
+
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  type="button"
+                  key={star}
+                  onClick={() => setRating(star)}
+                  className="text-2xl transition"
+                >
+                  {star <= rating ? "⭐" : "☆"}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* SUBMIT BUTTON */}
+          <button
+            type="submit"
+            disabled={!name || !message || loading}
+            className={`w-full font-bold py-3 rounded-xl transition shadow-md ${
+              !name || !message || loading
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-yellow-500 hover:bg-yellow-600 text-black"
+            }`}
+          >
+            {loading ? "Submitting..." : "Submit Review"}
+          </button>
+
+          <p className="text-xs text-gray-400 text-center">
+            Your review helps other travelers choose better safari experiences.
+          </p>
+
+        </form>
+      </div>
+
+      {/* ================= REVIEWS DISPLAY ================= */}
+      <div>
+
+        <h3 className="text-2xl font-bold mb-6 text-gray-800">
+          Recent Reviews
+        </h3>
+
+        {/* LOADING STATE */}
+        {loadingReviews ? (
+          <div className="bg-white rounded-2xl p-10 text-center border">
+            <p className="text-gray-500">Loading reviews...</p>
+          </div>
+        ) : (
+          <div className="space-y-5 max-h-[600px] overflow-y-auto pr-2">
+
+            {reviews.length === 0 ? (
+              <div className="bg-white border border-dashed border-gray-300 rounded-2xl p-10 text-center">
+                <p className="text-gray-500 font-medium">
+                  No reviews yet
+                </p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Be the first to share your experience 🌍
+                </p>
+              </div>
+            ) : (
+              reviews.map((r, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition"
+                >
+
+                  {/* HEADER */}
+                  <div className="flex items-center justify-between mb-2">
+
+                    {/* AVATAR */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-yellow-500 text-black flex items-center justify-center font-bold">
+                        {r.name?.charAt(0)?.toUpperCase()}
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-gray-800">
+                          {r.name}
+                        </h4>
+                        <p className="text-xs text-gray-400">
+                          {new Date(r.date || Date.now()).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* STARS */}
+                    <span className="text-yellow-500 text-sm">
+                      {"⭐".repeat(r.rating)}
+                    </span>
+                  </div>
+
+                  {/* MESSAGE */}
+                  <p className="text-gray-600 text-sm leading-7">
+                    {r.message}
+                  </p>
+
+                </div>
+              ))
+            )}
+
+          </div>
+        )}
+
+      </div>
+
+    </div>
   </div>
 </section>
 
-      {/* FOOTER */}
-      <footer className="bg-red-950 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          
-          {/* Brand */}
-          <div>
-            <h2 className="text-3xl font-bold text-yellow-500 mb-5">
-              Amboseli link safari
-            </h2>
+{/* FOOTER */}
+{/* FOOTER */}
+<footer className="bg-red-950 text-white py-16">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-            <p className="text-gray-400 leading-8">
-              Professional safari vehicle hire services in Kimana and Amboseli.
-              Safe, comfortable, and unforgettable safari experiences.
-            </p>
-          </div>
+    {/* Brand */}
+    <div>
+      <h2 className="text-3xl font-bold text-yellow-500 mb-2">
+        Amboseli link safari
+      </h2>
 
-          {/* Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-5">
-              Quick Links
-            </h3>
+      <p className="text-xs text-gray-500 mb-1">
+        Website designed & developed by Dennis Musa
+      </p>
 
-            <ul className="space-y-4 text-gray-400">
-              <li>
-                <Link to="/" className="hover:text-yellow-500 transition">
-                  Home
-                </Link>
-              </li>
+      <p className="text-gray-400 leading-8 mb-3">
+        Professional safari vehicle hire services in Kimana and Amboseli. Safe, comfortable, and unforgettable safari experiences.
+      </p>
 
-              <li>
-                <Link to="/vehicles" className="hover:text-yellow-500 transition">
-                  Fleet
-                </Link>
-              </li>
+      <a
+        href="https://dennismusa.netlify.app/"
+        target="_blank"
+        rel="noreferrer"
+        className="text-yellow-500 hover:underline text-sm font-semibold"
+      >
+        View Developer Portfolio
+      </a>
+    </div>
 
-              <li>
-                <Link to="/gallery" className="hover:text-yellow-500 transition">
-                  Gallery
-                </Link>
-              </li>
+    {/* Links */}
+    <div>
+      <h3 className="text-xl font-bold mb-5">Quick Links</h3>
 
-              <li>
-                <Link to="/contact" className="hover:text-yellow-500 transition">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
+      <ul className="space-y-4 text-gray-400">
+        <li>
+          <Link to="/" className="hover:text-yellow-500 transition">
+            Home
+          </Link>
+        </li>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-xl font-bold mb-5">
-              Services
-            </h3>
+        <li>
+          <Link to="/vehicles" className="hover:text-yellow-500 transition">
+            Fleet
+          </Link>
+        </li>
 
-            <ul className="space-y-4 text-gray-400">
-              <li>Safari Vehicle Hire</li>
-              <li>Airport Transfers</li>
-              <li>Group Tours</li>
-              <li>Private Safari Trips</li>
-            </ul>
-          </div>
+        <li>
+          <Link to="/gallery" className="hover:text-yellow-500 transition">
+            Gallery
+          </Link>
+        </li>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-xl font-bold mb-5">
-              Contact Info
-            </h3>
+        <li>
+          <Link to="/contact" className="hover:text-yellow-500 transition">
+            Contact
+          </Link>
+        </li>
+      </ul>
+    </div>
 
-            <ul className="space-y-4 text-gray-400">
-              <li>📍 Kimana, Amboseli - Kenya</li>
-              <li>📞 +254 724605140</li>
-              <li>✉ amboselilink@gmail.com</li>
-            </ul>
+    {/* Services */}
+    <div>
+      <h3 className="text-xl font-bold mb-5">Services</h3>
 
-            <a
-              href="https://wa.me/254724605140"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block mt-6 bg-green-500 hover:bg-green-600 text-black font-bold px-4 sm:px-6 md:px-8 py-3 rounded-lg transition"
-            >
-              WhatsApp Booking
-            </a>
-          </div>
-        </div>
+      <ul className="space-y-4 text-gray-400">
+        <li>Safari Vehicle Hire</li>
+        <li>Airport Transfers</li>
+        <li>Group Tours</li>
+        <li>Private Safari Trips</li>
+      </ul>
+    </div>
 
-        {/* Bottom */}
-        <div className="border-t border-gray-800 mt-14 pt-8 text-center text-gray-500">
-          © 2026 amboselilink Safari Vehicles. All Rights Reserved.
-        </div>
-      </footer>
+    {/* Contact */}
+    <div>
+      <h3 className="text-xl font-bold mb-5">Contact Info</h3>
+
+      <ul className="space-y-4 text-gray-400">
+        <li>📍 Kimana, Amboseli - Kenya</li>
+        <li>📞 +254 724605140</li>
+        <li>✉ amboselilink@gmail.com</li>
+      </ul>
+
+      <a
+        href="https://wa.me/254724605140"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-block mt-6 bg-green-500 hover:bg-green-600 text-black font-bold px-6 py-3 rounded-lg transition"
+      >
+        WhatsApp Booking
+      </a>
+    </div>
+  </div>
+
+  {/* Bottom */}
+  <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+    © 2026 Amboseli Link Safari Vehicles. All Rights Reserved.
+  </div>
+</footer>
     </div>
   );
 }
