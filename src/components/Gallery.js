@@ -10,7 +10,7 @@ import kandili4 from "../assets/kandili4.jpg";
 // EXPERIENCE IMAGES
 import amboselisunrise from "../assets/amboselisunrise.jpg";
 import amboseli3 from "../assets/amboseli3.jpg";
-import kandili10 from "../assets/kandili10.jpg";
+//import kandili10 from "../assets/kandili10.jpg";
 import cruiser5 from "../assets/cruiser5.jpg";
 
 function Gallery() {
