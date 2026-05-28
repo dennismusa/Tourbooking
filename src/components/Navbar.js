@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import safarilinklogo from "../assets/safarilinklogo.jpg";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -18,19 +19,16 @@ function Navbar() {
 
             {/* LOGO */}
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold">
-                🦁
-              </div>
+         <img
+           src={safarilinklogo}
+           alt="Safari Link Logo"
+           className="w-10 h-10 rounded-full object-cover shadow-md"
+                />
 
-              <div>
-                <h1 className="text-white font-bold text-lg">
-                  Amboseli Link Safari
-                </h1>
-                <p className="text-gray-300 text-[10px] uppercase tracking-widest hidden sm:block">
-                  Premium Safari Vehicles
-                </p>
-              </div>
-            </Link>
+            <span className="text-lg font-bold text-yellow-500">
+             Amboseli link safari
+              </span>
+              </Link>
 
             {/* DESKTOP MENU */}
             <div className="hidden md:flex items-center gap-8 text-sm font-medium">
