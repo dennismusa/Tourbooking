@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://amboselilinksafari.netlify.app/</loc>
+    <loc>https://amboselilinksafari.com/</loc>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://amboselilinksafari.netlify.app/vehicles</loc>
+    <loc>https://amboselilinksafari.com/vehicles</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://amboselilinksafari.netlify.app/gallery</loc>
+    <loc>https://amboselilinksafari.com/gallery</loc>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://amboselilinksafari.netlify.app/contact</loc>
+    <loc>https://amboselilinksafari.com/contact</loc>
     <priority>0.7</priority>
   </url>
 
