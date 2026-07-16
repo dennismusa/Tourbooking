@@ -59,36 +59,38 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
 
   // ================= SUBMIT REVIEW (IMPORTANT PART 2) =================
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!name || !message) return;
+  if (!name || !message) return;
 
-    const review = {
-      name,
-      message,
-      rating,
-      date: new Date().toISOString(),
-    };
-
-    try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-  method: "POST",
-  body: JSON.stringify(review),
-});
-
-// instantly update UI
-setReviews((prev) => [review, ...prev]);
-
-setSuccess(true);
-setTimeout(() => setSuccess(false), 3000);
-
-      setName("");
-      setMessage("");
-      setRating(5);
-    } catch (error) {
-      console.log(error);
-    }
+  const review = {
+    name,
+    message,
+    rating,
+    date: new Date().toISOString(),
   };
+
+  setLoading(true);
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(review),
+    });
+
+    setReviews((prev) => [review, ...prev]);
+    setSuccess(true);
+    setTimeout(() => setSuccess(false), 3000);
+
+    setName("");
+    setMessage("");
+    setRating(5);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   
   return (
