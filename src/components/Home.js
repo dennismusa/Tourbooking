@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useLanguageSync from "../hooks/useLanguageSync";
+import { useTranslation } from "react-i18next";
 
 //import cruiser1 from "../assets/cruiser1.jpg";
 //import cruiser2 from "../assets/cruiser2.jpg";
@@ -23,12 +25,14 @@ function Home() {
 
   // ================= REVIEWS STATE =================
   const [reviews, setReviews] = useState([]);
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(5);
-  const [loading] = useState(false);
-const [loadingReviews] = useState(false);
-const [success] = useState(false);
+  
+const [loading, setLoading] = useState(false);
+const [loadingReviews, setLoadingReviews] = useState(false);
+const [success, setSuccess] = useState(false);
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1trHeLZyVfmIYF6ZyBJ82fcgFVpwD4jneDp4BjuNG3cUSbY91OW6S6rhJQ/exec";
  
@@ -68,12 +72,15 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(review),
-      });
+  method: "POST",
+  body: JSON.stringify(review),
+});
 
-      // instantly update UI
-      setReviews((prev) => [review, ...prev]);
+// instantly update UI
+setReviews((prev) => [review, ...prev]);
+
+setSuccess(true);
+setTimeout(() => setSuccess(false), 3000);
 
       setName("");
       setMessage("");
@@ -124,12 +131,12 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
 
         {/* TAG */}
         <p className="uppercase tracking-[5px] text-yellow-400 mb-4 font-semibold text-xs sm:text-sm">
-          Premium Safari Experience
+         {t("heroTag", "Explore Kenya")}
         </p>
 
         {/* TITLE */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-          Explore Kenya With{" "}
+           {t("heroTitle", "Discover")}
           <span className="text-yellow-400">Luxury Safari Vehicles</span>
         </h1>
 
@@ -181,87 +188,104 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
 
       {/* ABOUT SECTION */}
     <section className="py-20 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-gray-100">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
-        {/* IMAGE SLIDER SIDE */}
-        <div className="relative group">
+    {/* IMAGE SLIDER SIDE */}
+    <div className="relative group">
 
-          <img
-            // eslint-disable-next-line no-undef
-            src={images[index]}
-            alt="Safari Vehicle"
-            className="rounded-3xl shadow-2xl w-full h-[520px] object-cover transition duration-700 ease-in-out"
+      <img
+        src={images[index]}
+        alt="Safari Vehicle"
+        className="rounded-3xl shadow-2xl w-full h-[520px] object-cover transition duration-700 ease-in-out"
+      />
+
+      <div className="absolute inset-0 rounded-3xl bg-black/10 group-hover:bg-black/20 transition"></div>
+
+      <div className="absolute -bottom-8 -right-8 bg-yellow-500 text-black p-6 rounded-2xl shadow-xl">
+        <h3 className="text-4xl font-bold">
+          {t("aboutBadgeNumber", "10+")}
+        </h3>
+        <p className="font-medium">
+          {t("aboutBadgeText", "Safari Vehicles")}
+        </p>
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, i) => (
+          <div
+            key={i}
+            className={`w-2.5 h-2.5 rounded-full transition ${
+              i === index ? "bg-yellow-500" : "bg-white/50"
+            }`}
           />
+        ))}
+      </div>
 
-          {/* Soft overlay */}
-          <div className="absolute inset-0 rounded-3xl bg-black/10 group-hover:bg-black/20 transition"></div>
+    </div>
 
-          {/* Badge */}
-          <div className="absolute -bottom-8 -right-8 bg-yellow-500 text-black p-6 rounded-2xl shadow-xl">
-            <h3 className="text-4xl font-bold">10+</h3>
-            <p className="font-medium">Safari Vehicles</p>
-          </div>
+    {/* TEXT SIDE */}
+    <div>
 
-          {/* Dots indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.map((_, i) => (
-              <div
-                key={i}
-                className={`w-2.5 h-2.5 rounded-full transition ${
-                  i === index ? "bg-yellow-500" : "bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
+      <p className="uppercase tracking-[6px] text-yellow-500 font-semibold mb-4">
+        {t("aboutTag", "About Us")}
+      </p>
 
+      <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+        {t("aboutTitle", "Trusted Safari Transport in Kenya")}
+      </h2>
+
+      <p className="text-gray-600 text-lg leading-8 mb-10">
+        {t(
+          "aboutDescription",
+          "We provide premium safari vehicle hire services across Amboseli, Tsavo, Chyulu Hills, and Maasai Mara with experienced local drivers ensuring safe and unforgettable journeys."
+        )}
+      </p>
+
+      {/* STATS */}
+      <div className="grid sm:grid-cols-2 gap-6">
+
+        <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
+          <h3 className="text-3xl font-bold text-yellow-500 mb-2">
+            {t("stat1Number", "500+")}
+          </h3>
+          <p className="text-gray-700 font-medium">
+            {t("stat1Text", "Happy Tourists")}
+          </p>
         </div>
 
-        {/* TEXT SIDE */}
-        <div>
-
-          <p className="uppercase tracking-[6px] text-yellow-500 font-semibold mb-4">
-            About Us
+        <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
+          <h3 className="text-3xl font-bold text-yellow-500 mb-2">
+            {t("stat2Number", "24/7")}
+          </h3>
+          <p className="text-gray-700 font-medium">
+            {t("stat2Text", "Booking Support")}
           </p>
+        </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Trusted Safari Transport in Kenya
-          </h2>
-
-          <p className="text-gray-600 text-lg leading-8 mb-10">
-            We provide premium safari vehicle hire services across Amboseli,
-            Tsavo, Chyulu Hills, and Maasai Mara with experienced local drivers
-            ensuring safe and unforgettable journeys.
+        <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
+          <h3 className="text-3xl font-bold text-yellow-500 mb-2">
+            {t("stat3Number", "Expert")}
+          </h3>
+          <p className="text-gray-700 font-medium">
+            {t("stat3Text", "Local Drivers")}
           </p>
+        </div>
 
-          {/* STATS */}
-          <div className="grid sm:grid-cols-2 gap-6">
-
-            <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-2">500+</h3>
-              <p className="text-gray-700 font-medium">Happy Tourists</p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-2">24/7</h3>
-              <p className="text-gray-700 font-medium">Booking Support</p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-2">Expert</h3>
-              <p className="text-gray-700 font-medium">Local Drivers</p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-2">Affordable</h3>
-              <p className="text-gray-700 font-medium">Safari Packages</p>
-            </div>
-
-          </div>
-
+        <div className="p-6 rounded-2xl bg-white/70 backdrop-blur-md shadow-md hover:shadow-xl transition border border-gray-100">
+          <h3 className="text-3xl font-bold text-yellow-500 mb-2">
+            {t("stat4Number", "Affordable")}
+          </h3>
+          <p className="text-gray-700 font-medium">
+            {t("stat4Text", "Safari Packages")}
+          </p>
         </div>
 
       </div>
-    </section>
+
+    </div>
+
+  </div>
+</section>
 
 {/* OUR SERVICES (PREMIUM VERTICAL VERSION) */}
 <section className="py-24 md:py-32 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-white via-gray-50 to-gray-100">
