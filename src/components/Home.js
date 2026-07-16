@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useLanguageSync from "../hooks/useLanguageSync";
+
 import { useTranslation } from "react-i18next";
 
 //import cruiser1 from "../assets/cruiser1.jpg";
