@@ -40,13 +40,22 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
   
   // ================= LOAD REVIEWS (IMPORTANT PART 1) =================
   useEffect(() => {
-    fetch(GOOGLE_SCRIPT_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews(data.reverse()); // newest first
-      })
-      .catch((err) => console.log("Error loading reviews:", err));
-  }, []);
+  const loadReviews = async () => {
+    setLoadingReviews(true);
+
+    try {
+      const res = await fetch(GOOGLE_SCRIPT_URL);
+      const data = await res.json();
+      setReviews(data.reverse());
+    } catch (err) {
+      console.log("Error loading reviews:", err);
+    } finally {
+      setLoadingReviews(false);
+    }
+  };
+
+  loadReviews();
+}, []);
 
   // ================= SLIDER =================
   useEffect(() => {
@@ -78,7 +87,9 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
       body: JSON.stringify(review),
     });
 
+    // Instantly update UI
     setReviews((prev) => [review, ...prev]);
+
     setSuccess(true);
     setTimeout(() => setSuccess(false), 3000);
 
@@ -91,6 +102,8 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyACVav3SoF1t
     setLoading(false);
   }
 };
+// instantly update UI
+
 
   
   return (
